@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scott Foger - Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f3f4f6; /* Light gray background for light mode */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23d1d5db' fill-opacity='0.4' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .dark body {
+            background-color: #1f2937; /* Dark gray background for dark mode */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%234b5563' fill-opacity='0.4' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 font-sans transition-colors duration-300">
+    <div class="container mx-auto px-4 py-8 max-w-5xl bg-white dark:bg-gray-800">
+        <header class="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-lg p-6 mb-8 relative">
+            <button id="darkModeToggle" class="absolute top-4 right-4 bg-white text-gray-800 px-3 py-1 rounded-full text-sm">
+                🌙 Dark Mode
+            </button>
+            <h1 class="text-4xl font-bold mb-2">Scott Foger</h1>
+            <p class="text-xl">Cloud Operations Engineer/Architect</p>
+            <div class="mt-4 flex flex-wrap gap-4">
+                <p><i class="fas fa-map-marker-alt mr-2"></i>5514 S Brockway, Murray, UT 84117</p>
+                <p><i class="fas fa-phone mr-2"></i>801.706.7741</p>
+                <p><i class="fas fa-envelope mr-2"></i>scott.foger@gmail.com</p>
+            </div>
+        </header>
+
+        <main class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300">
+            <section id="summary" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Professional Summary</h2>
+                <p class="text-gray-700 dark:text-gray-300">Experienced in AWS cloud technologies and architecture, with over 15 years of expertise spanning
+security domains including cryptography, application security, operations security, and infrastructure
+automation. Skilled in designing and optimizing AWS infrastructure for security, scalability, and
+efficiency, ensuring adherence to AWS Well-Architected framework. Adept at identifying, analyzing,
+and mitigating security risks across diverse cloud environments.</p>
+            </section>
+
+            <section id="experience" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Experience</h2>
+                <div class="space-y-6">
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">AWS Cloud Architect</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">Kryterion | Murray, UT | Nov 2022 - Present</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Re-architected AWS account architecture to follow AWS Well-Architected</li>
+                                <li>Fully automated deployment of AWS infrastructure using AWS CDK</li>
+                                <li>Reduced size of development databases resulting in cost savings of +$500k annually</li>
+                                <li>Streamlined secure AWS CLI authentication by integrating with enterprise password manager</li>
+                                <li>Identified and addressed critical ETL process flaws</li>
+                                <li>Implemented monitoring and alerting process using AWS CDK, CloudWatch Logs, and SES</li>
+                                <li>Worked with colleagues to fix SPF and related DNS configurations to address email delivery issues</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">Sr. DevOps Engineer</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">HeyDayNow | Salt Lake City, UT | Aug 2022 - Feb 2023</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Defined and managed infrastructure as code using AWS Cloud Development Kit</li>
+                                <li>Ensured all facets of AWS infrastructure is defined using code</li>
+                                <li>Advised engineering team on infrastructure security best practices</li>
+                                <li>Performed secure code reviews and threat assessments</li>
+                                <li>Designed and developed API and backend systems, including API key automation</li>
+                                <li>Standardized tagging strategy across all infrastructure components to reduce costs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">Cloud Infrastructure Architect</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">Amazon Web Services (AWS) | Lehi, UT | Dec 2020 - Nov 2021</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Successfully completed Security Area of Depth course</li>
+                                <li>Published internal knowledge base article detailing custom project for achieving continuous baseline security compliance through adherence to the OWASP Application Security Verification Standard framework</li>
+                                <li>Obtained all associate level AWS technical certifications and security specialty certification</li>
+                                <li>Open-sourced code for streamlining AWS Step Function development</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">Application Security Engineer</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">MX Technologies, Inc. | Lehi, UT | March 2019 - Nov 2020</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Implemented secure code training program for Engineering, Product, and QA teams</li>
+                                <li>Designed, developed and implemented a system for detecting, evaluating, and responding to security events including firewall traffic logs, vulnerability management events, security-related email, etc.</li>
+                                <li>Designed and implemented OWASP ASVS issue tracker with support for Github and Gitlab integrations</li>
+                                <li>Designed and implemented Okta integration for Gitlab to add support for central permission administration of Gitlab projects via Okta</li>
+                                <li>Built containerized deployment model of software stack to facilitate dynamic application security testing</li>
+                                <li>Coordinates security vulnerability findings via penetration tests, vulnerability scans, and vulnerability disclosure program with Engineering teams</li>
+                                <li>Consults with Engineering and Product teams and assists in threat modeling and threat assessments</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">Infrastructure Engineer</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">HireVue, Inc. | South Jordan, UT | Oct 2017 - Feb 2019</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Automated inventory audit process across multiple AWS accounts for FedRAMP audit</li>
+                                <li>Designed and implemented AWS auto scaling pattern using saltstack, lambda, and cloudwatch events</li>
+                                <li>Designed and implemented infrastructure monitoring supporting third party integrations</li>
+                                <li>Automated security update process to AWS AMIs used for base images</li>
+                                <li>Participate in key, password, TLS certificate rotations</li>
+                                <li>Implement AWS Managed VPN service</li>
+                                <li>Designed and implemented automatic load-based scaling of build servers to decrease developer wait times</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">DevOps Engineer</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">Solutionreach, Inc. | Lehi, UT | Aug 2014 - Sept 2017</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Integrated apache mod_security WAF into QA environments to enable security testing throughout the SDLC</li>
+                                <li>Integrated automated nexpose scans of QA, staging, and production environments</li>
+                                <li>Wrote saltstack plugin to automate discovery of all TLS certificates deployed on servers throughout the environment</li>
+                                <li>Protected SMTP sender reputation by automating unsubscribing recipients that mark messages as spam</li>
+                                <li>Developed CI/CD deployment pipeline for marketing website</li>
+                                <li>Implemented standardized and security hardened base build process through configuration management</li>
+                                <li>Setup central RADIUS + Google 2FA + LDAP + PAM to facilitate secure two-factor authentication for any device or service which supports RADIUS authentication</li>
+                                <li>Developed and deployed self-registration portal for two-factor authentication</li>
+                                <li>Authored FreeIPA saltstack modules</li>
+                                <li>Developed infrastructure provisioning webapp with Flask that integrates with saltstack, SolarWinds IPAM, and VMware</li>
+                                <li>Designed and implemented centralized logging solution</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">RSA Technical Support Engineer III</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">EMC Corporation | Draper, UT | Oct 2013 – Aug 2014</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Assisted customers with the setup and configuration of core cryptographic services such as key management, key creation, certificate management, authentication, integrity of data (digital signatures), encryption and decryption of data, and FIPS140-2 compliance.</li>
+                                <li>Wrote mobile application (Android) to demonstrate usage of asymmetric and symmetric algorithms using Crypto-J (BSAFE)</li>
+                                <li>Provided internal documentation on supported algorithms and configurations for both asymmetric and symmetric encryption algorithms to assist with onboarding</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">Sr. Security Administrator</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">LHM Retail Properties | Salt Lake City, UT | December 2012 – October 2013</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Lead two person information security team for Fanzz, Megaplex Theaters, and Pro Stop convenience stores</li>
+                                <li>Managed antivirus, host firewalls, and security patches on all endpoints</li>
+                                <li>Provided security guidance to network and server teams to ensure PCI compliance</li>
+                                <li>Obtained Internal Security Auditor certification from PCI Security Council</li>
+                                <li>Implemented information security policy and provided security awareness training</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">RSA Technical Support Engineer</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">EMC Corporation | Draper, UT | July 2012 - Dec 2012</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Automated SSL certificate replacement process on Windows based Authentication Manager servers</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">PGP Technical Support Engineer</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">Symantec Corporation | Lindon, UT | Jan 2012 - July 2012</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Designed and developed web application using Ruby on Rails to consolidate several search forms into a unified search page for commonly searched information repositories.</li>
+                                <li>Created internal bug tracker web application using Ruby on Rails</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">IT Security Administrator</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">Overstock.com | Salt Lake City, UT | Sept 2011 - Jan 2012</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Managed antivirus operations and upgrades</li>
+                                <li>Operated vulnerability scanner and web application firewall</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">Zions Bancorporation</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">Salt Lake City, UT | Feb 2010 - Sept 2011</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Managed antivirus operations and upgrades</li>
+                                <li>Operated vulnerability scanner and web application firewall</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
+                            <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">PGP Corporation</h3>
+                            <span class="text-gray-600 dark:text-gray-400">▼</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">Lindon, UT | Jan 2009 - Jan 2010</p>
+                        <div class="overflow-hidden" style="max-height: 0; transition: max-height 0.2s ease-out;">
+                            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-2">
+                                <li>Managed antivirus operations and upgrades</li>
+                                <li>Operated vulnerability scanner and web application firewall</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Education</h2>
+                <div>
+                    <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">Bachelor of Science - Information Systems Security</h3>
+                    <p class="text-gray-600 dark:text-gray-400">ITT Technical Institute | Murray, Utah</p>
+                </div>
+            </section>
+
+            <section id="certifications" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Certifications</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">AWS Certified Security - Specialty</p>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">AWS Certified SysOps Administrator - Associate</p>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">AWS Certified Developer - Associate</p>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">AWS Certified Solutions Architect - Associate</p>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">AWS Certified Cloud Practitioner</p>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">CISSP</p>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">MCP</p>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">SaltStack Certified Engineer</p>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">Security +</p>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg text-center">
+                        <p class="font-medium text-blue-800 dark:text-blue-200">Network +</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="technical-proficiencies" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Technical Proficiencies</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg">
+                        <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Operating System Experience</h3>
+                        <p class="text-gray-600 dark:text-gray-400"><strong>Windows:</strong> Windows Server 2008/2012/2016/, Windows 7/8/10, Active Directory, Group Policy, PowerShell</p>
+                        <p class="text-gray-600 dark:text-gray-400"><strong>Linux:</strong> CentOS, Red Hat Enterprise Linux, Ubuntu, Debian, Kali Linux, Amazon Linux, Bash scripting, Apache, Nginx</p>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg">
+                        <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Networking Protocols</h3>
+                        <p class="text-gray-600 dark:text-gray-400">TCP/IP, DNS, DHCP, SMTP, FTP, HTTP, HTTPS, SSH, SSL/TLS, VPN, IPSec, SNMP, RADIUS, LDAP, NTP</p>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg">
+                        <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Programming</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Python, PowerShell, Bash, Ruby, C/C++, Java, JavaScript, TypeScript, Jinja</p>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg">
+                        <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-2">Tools</h3>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-400">
+                            <li><strong>Vulnerability scanners:</strong> Nessus, OpenVAS, Qualys, Nexpose</li>
+                            <li><strong>Intrusion detection and prevention systems:</strong> Snort, Apache ModSecurity, Palo Alto Networks</li>
+                            <li><strong>Security information and event management systems:</strong> Splunk, Elastic stack, Cloudwatch, Rsyslog</li>
+                            <li><strong>Web application scanners:</strong> Burp Suite, OWASP ZAP, WPScan, w3af, OpenVAS, arachni</li>
+                            <li><strong>Network mapping and reconnaissance tools:</strong> Nmap, Metasploit, Netcat, Wireshark, tcpdump, hping3, sparta, openssl</li>
+                            <li><strong>Penetration testing tools:</strong> Kali Linux, Aircrack-ng, John the Ripper, Hydra, THC-Hydra, SQLmap</li>
+                            <li><strong>Databases:</strong> PostgreSQL, MariaDB, sqlite</li>
+                            <li><strong>APIs:</strong> REST, GraphQL</li>
+                            <li><strong>Observability:</strong> Datadog, New Relic, Nagios</li>
+                            <li><strong>Automation:</strong> git, gitlab, jenkins, saltstack, virtualbox, vmware, ansible, aws cdk, terraform</li>
+                            <li><strong>Orchestration:</strong> vagrant, docker, kubernetes, aws</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const html = document.documentElement;
+
+            darkModeToggle.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                if (html.classList.contains('dark')) {
+                    darkModeToggle.textContent = '☀️ Light Mode';
+                } else {
+                    darkModeToggle.textContent = '🌙 Dark Mode';
+                }
+            });
+
+            // Initialize all experience sections
+            document.querySelectorAll('.experience-item').forEach(item => {
+                const content = item.querySelector('.overflow-hidden');
+                content.style.maxHeight = '0px';
+            });
+        });
+
+        function toggleExperience(element) {
+            const content = element.nextElementSibling.nextElementSibling;
+            const arrow = element.querySelector('span');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                arrow.textContent = '▼';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                arrow.textContent = '▲';
+            }
+        }
+    </script>
+</body>
+</html>
