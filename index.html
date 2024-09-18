@@ -65,7 +65,12 @@ and mitigating security risks across diverse cloud environments.</p>
             </section>
 
             <section id="experience" class="mb-8">
-                <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Experience</h2>
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Experience</h2>
+                    <a href="#" id="toggleAllExperience" class="text-blue-500 hover:text-blue-600 underline text-sm">
+                        Expand All
+                    </a>
+                </div>
                 <div class="space-y-6">
                     <div class="experience-item bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
                         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExperience(this)">
@@ -365,9 +370,9 @@ and mitigating security risks across diverse cloud environments.</p>
         </main>
     </div>
 
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hidden transition-opacity duration-300 hover:bg-blue-600 flex items-center">
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-500 text-white px-6 py-2 rounded-full shadow-lg hidden transition-opacity duration-300 hover:bg-blue-600 flex items-center justify-center">
         <i class="fas fa-arrow-up mr-2"></i>
-        <span class="text-sm">Top</span>
+        <span class="text-sm">Back to Top</span>
     </button>
 
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
@@ -427,6 +432,31 @@ and mitigating security risks across diverse cloud environments.</p>
                     });
                 });
             });
+
+            const toggleAllLink = document.getElementById('toggleAllExperience');
+            const experienceItems = document.querySelectorAll('.experience-item');
+
+            toggleAllLink.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent the default link behavior
+                const isAnyExpanded = Array.from(experienceItems).some(item => 
+                    item.querySelector('.overflow-hidden').style.maxHeight !== '0px'
+                );
+
+                experienceItems.forEach(item => {
+                    const content = item.querySelector('.overflow-hidden');
+                    const arrow = item.querySelector('.flex span');
+                    
+                    if (isAnyExpanded) {
+                        content.style.maxHeight = '0px';
+                        arrow.textContent = '▼';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        arrow.textContent = '▲';
+                    }
+                });
+
+                toggleAllLink.textContent = isAnyExpanded ? 'Expand All' : 'Collapse All';
+            });
         });
 
         function toggleExperience(element) {
@@ -440,6 +470,18 @@ and mitigating security risks across diverse cloud environments.</p>
                 content.style.maxHeight = content.scrollHeight + "px";
                 arrow.textContent = '▲';
             }
+
+            updateToggleAllLink();
+        }
+
+        function updateToggleAllLink() {
+            const toggleAllLink = document.getElementById('toggleAllExperience');
+            const experienceItems = document.querySelectorAll('.experience-item');
+            const isAnyExpanded = Array.from(experienceItems).some(item => 
+                item.querySelector('.overflow-hidden').style.maxHeight !== '0px'
+            );
+
+            toggleAllLink.textContent = isAnyExpanded ? 'Collapse All' : 'Expand All';
         }
     </script>
 </body>
